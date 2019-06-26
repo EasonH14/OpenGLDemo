@@ -9,6 +9,12 @@
 #import "SplitView.h"
 #import <OpenGLES/ES3/gl.h>
 #import <OpenGLES/ES3/glext.h>
+#import <GLKit/GLKit.h>
+
+typedef struct {
+    GLKVector3 vertex;
+    GLKVector2 textureCoord;
+}CCVertex;
 
 @interface SplitView ()
 {
@@ -16,6 +22,9 @@
     GLuint frameBufferId;
     
     GLuint program;
+    
+    GLuint vertexBufferId;
+    GLuint textureId;
 }
 
 @property (nonatomic, strong) CAEAGLLayer *myEAGLLayer;
@@ -25,6 +34,113 @@
 @end
 
 @implementation SplitView
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    [self setupLayer];
+    [self setupContext];
+    [self setupRenderBufferFrameBuffer];
+    [self setupVertexData];
+    
+    [self setupProgramWithName:@"SplitScreen_1"];
+    [self loadTexture:@"kunkun.jpg"];
+    
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    
+    
+    [self render];
+}
+
+#pragma mark - render
+- (void)render {
+    
+    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    glViewport(0, 0, [self drawableWidth], [self drawableHeight]);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
+    [self useProgram];
+    
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    
+    [self.myContext presentRenderbuffer:GL_RENDERBUFFER];
+    
+}
+
+#pragma mark - vertex data
+- (void)setupVertexData {
+    
+    CCVertex vertexs[4] = {
+        {{-1, -1, 0.0}, {0.0, 0.0}},
+        {{1, -1, 0.0}, {1.0, 0.0}},
+        {{-1, 1, 0.0}, {0.0, 1.0}},
+        {{1, 1, 0.0}, {1.0, 1.0}},
+    };
+    
+    GLuint arrayBufferId;
+    glGenBuffers(1, &arrayBufferId);
+    glBindBuffer(GL_ARRAY_BUFFER, arrayBufferId);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexs), vertexs, GL_DYNAMIC_DRAW);
+    vertexBufferId = arrayBufferId;
+    
+}
+
+#pragma mark - load texture
+- (void)loadTexture:(NSString *)fileName {
+    
+    UIImage *image = [UIImage imageNamed:fileName];
+    CGImageRef imageRef = image.CGImage;
+    
+    size_t width = CGImageGetWidth(imageRef);
+    size_t height = CGImageGetHeight(imageRef);
+    
+    void *data = malloc(width * height * 4);
+    
+    CGContextRef contextRef = CGBitmapContextCreate(data, width, height, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), CGImageGetColorSpace(imageRef), CGImageGetBitmapInfo(imageRef));
+    
+    CGContextTranslateCTM(contextRef, 0, height);
+    CGContextScaleCTM(contextRef, 1.f, -1.f);
+    
+    CGContextDrawImage(contextRef, CGRectMake(0, 0, width, height), imageRef);
+    
+    CGContextRelease(contextRef);
+    
+    glGenTextures(1, &textureId);
+    glBindTexture(GL_TEXTURE_2D, textureId);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)width, (GLsizei)height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    
+    free(data);
+    
+}
+
+
+#pragma mark - use program
+- (void)useProgram {
+    
+    glUseProgram(program);
+    
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(CCVertex), (GLvoid *)NULL + offsetof(CCVertex, vertex));
+    
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(CCVertex), (GLvoid *)NULL + offsetof(CCVertex, textureCoord));
+    
+    glBindTexture(GL_TEXTURE_2D, textureId);
+    glUniform1i(glGetUniformLocation(program, "sampler"), 0);
+}
+
 
 #pragma mark - compile shader & link program
 - (void)setupProgramWithName:(NSString *)name {
@@ -46,6 +162,9 @@
     
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragShaer);
+    
+    glBindAttribLocation(program, 0, "position");
+    glBindAttribLocation(program, 1, "textureCoords");
     
     glLinkProgram(program);
     
@@ -92,12 +211,12 @@
 - (void)setupRenderBufferFrameBuffer {
     
     glGenRenderbuffers(1, &renderBufferId);
-    glBindBuffer(GL_RENDERBUFFER, renderBufferId);
+    glBindRenderbuffer(GL_RENDERBUFFER, renderBufferId);
     
     [self.myContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:self.myEAGLLayer];
     
     glGenFramebuffers(1, &frameBufferId);
-    glBindBuffer(GL_FRAMEBUFFER, frameBufferId);
+    glBindFramebuffer(GL_FRAMEBUFFER, frameBufferId);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, renderBufferId);
 }
 
@@ -112,7 +231,7 @@
 - (void)setupLayer {
     
     self.myEAGLLayer = (CAEAGLLayer *)self.layer;
-    
+    self.myEAGLLayer.contentsScale = [[UIScreen mainScreen] scale];
     self.myEAGLLayer.drawableProperties = @{kEAGLDrawablePropertyRetainedBacking : @(false), kEAGLDrawablePropertyColorFormat : kEAGLColorFormatRGBA8};
     
 }
@@ -121,5 +240,18 @@
     return [CAEAGLLayer class];
 }
 
+
+- (GLint)drawableWidth {
+    GLint width;
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &width);
+    return width;
+}
+
+
+- (GLint)drawableHeight {
+    GLint height;
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &height);
+    return height;
+}
 
 @end

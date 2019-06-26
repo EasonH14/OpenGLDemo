@@ -1,11 +1,10 @@
-#vesion 300 es
 
 precision highp float;
 
 uniform sampler2D sampler;
 
-in vec2 outTextureCoords;
+varying highp vec2 outTextureCoords;
 
 void main() {
-    gl_FragColor = texture(sampler, outTextureCoords);
+    gl_FragColor = texture2D(sampler, outTextureCoords);
 }
