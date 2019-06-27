@@ -37,7 +37,7 @@
     filterBar.delegate = self;
     [self.view addSubview:filterBar];
     
-    filterBar.itemList = @[@"无", @"分屏_2", @"分屏_3", @"分屏_4", @"分屏_6", @"分屏_9"];
+    filterBar.itemList = @[@"无", @"分屏_2", @"分屏_3", @"分屏_4", @"分屏_6", @"分屏_9", @"灰度", @"翻转", @"漩涡", @"马赛克", @"马赛克2", @"马赛克3"];
     
 }
 

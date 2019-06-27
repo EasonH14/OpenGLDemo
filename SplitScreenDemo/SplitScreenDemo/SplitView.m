@@ -7,8 +7,8 @@
 //
 
 #import "SplitView.h"
-#import <OpenGLES/ES3/gl.h>
-#import <OpenGLES/ES3/glext.h>
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
 #import <GLKit/GLKit.h>
 
 typedef struct {
@@ -122,7 +122,7 @@ typedef struct {
     GLuint arrayBufferId;
     glGenBuffers(1, &arrayBufferId);
     glBindBuffer(GL_ARRAY_BUFFER, arrayBufferId);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexs), vertexs, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexs), vertexs, GL_STATIC_DRAW);
     vertexBufferId = arrayBufferId;
 }
 
@@ -262,7 +262,7 @@ typedef struct {
 
 - (void)setupContext {
     
-    self.myContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
+    self.myContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     [EAGLContext setCurrentContext:self.myContext];
 }
