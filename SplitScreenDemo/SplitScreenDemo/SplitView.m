@@ -35,9 +35,21 @@ typedef struct {
 
 @implementation SplitView
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    [self commonInit];
+}
+
+- (void)commonInit {
     [self setupLayer];
     [self setupContext];
     [self setupRenderBufferFrameBuffer];
@@ -45,16 +57,35 @@ typedef struct {
     
     [self setupProgramWithName:@"SplitScreen_1"];
     [self loadTexture:@"kunkun.jpg"];
-    
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    
-    
     [self render];
 }
+
+- (void)renderWithName:(NSString *)name {
+    
+    [self setupProgramWithName:name];
+    [self render];
+}
+
+
+#pragma mark - dealloc
+- (void)dealloc {
+    
+    if ([EAGLContext currentContext] == self.myContext) {
+        [EAGLContext setCurrentContext:nil];
+    }
+    
+    if (vertexBufferId) {
+        glDeleteBuffers(1, &vertexBufferId);
+        vertexBufferId = 0;
+    }
+    
+}
+
 
 #pragma mark - render
 - (void)render {
@@ -83,12 +114,16 @@ typedef struct {
         {{1, 1, 0.0}, {1.0, 1.0}},
     };
     
+    if (vertexBufferId) {
+        glDeleteBuffers(1, &vertexBufferId);
+        vertexBufferId = 0;
+    }
+    
     GLuint arrayBufferId;
     glGenBuffers(1, &arrayBufferId);
     glBindBuffer(GL_ARRAY_BUFFER, arrayBufferId);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexs), vertexs, GL_DYNAMIC_DRAW);
     vertexBufferId = arrayBufferId;
-    
 }
 
 #pragma mark - load texture
@@ -156,6 +191,10 @@ typedef struct {
     if (![self compileShader:&fragShaer name:[name stringByAppendingString:@".fsh"] type:GL_FRAGMENT_SHADER]) {
         
         return;
+    }
+    
+    if (program) {
+        glDeleteProgram(program);
     }
     
     program = glCreateProgram();

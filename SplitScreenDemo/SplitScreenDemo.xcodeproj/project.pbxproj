@@ -19,6 +19,16 @@
 		4C23515922C268D4009211C0 /* SplitScreen_1.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C23515822C268D4009211C0 /* SplitScreen_1.vsh */; };
 		4C23515B22C26B68009211C0 /* SplitScreen_1.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4C23515A22C26B68009211C0 /* SplitScreen_1.fsh */; };
 		8831F60622C3669C0072D8DE /* kunkun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8831F60522C3669C0072D8DE /* kunkun.jpg */; };
+		88DD2C1F22C49C9800A54AB8 /* SplitScreen_2.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C1E22C49C9800A54AB8 /* SplitScreen_2.vsh */; };
+		88DD2C2122C49CAA00A54AB8 /* SplitScreen_2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C2022C49CAA00A54AB8 /* SplitScreen_2.fsh */; };
+		88DD2C2422C4A0F500A54AB8 /* SplitScreen_3.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C2322C4A0F500A54AB8 /* SplitScreen_3.vsh */; };
+		88DD2C2622C4A10800A54AB8 /* SplitScreen_3.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C2522C4A10800A54AB8 /* SplitScreen_3.fsh */; };
+		88DD2C2922C4A61300A54AB8 /* SplitScreen_4.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C2822C4A61300A54AB8 /* SplitScreen_4.vsh */; };
+		88DD2C2B22C4A62000A54AB8 /* SplitScreen_4.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C2A22C4A62000A54AB8 /* SplitScreen_4.fsh */; };
+		88DD2C2E22C4A76600A54AB8 /* SplitScreen_5.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C2D22C4A76600A54AB8 /* SplitScreen_5.vsh */; };
+		88DD2C3022C4A77600A54AB8 /* SplitScreen_5.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C2F22C4A77600A54AB8 /* SplitScreen_5.fsh */; };
+		88DD2C3322C4A93D00A54AB8 /* SplitScreen_6.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C3222C4A93D00A54AB8 /* SplitScreen_6.vsh */; };
+		88DD2C3522C4A94A00A54AB8 /* SplitScreen_6.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 88DD2C3422C4A94A00A54AB8 /* SplitScreen_6.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +51,16 @@
 		4C23515822C268D4009211C0 /* SplitScreen_1.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_1.vsh; sourceTree = "<group>"; };
 		4C23515A22C26B68009211C0 /* SplitScreen_1.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_1.fsh; sourceTree = "<group>"; };
 		8831F60522C3669C0072D8DE /* kunkun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kunkun.jpg; sourceTree = "<group>"; };
+		88DD2C1E22C49C9800A54AB8 /* SplitScreen_2.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_2.vsh; sourceTree = "<group>"; };
+		88DD2C2022C49CAA00A54AB8 /* SplitScreen_2.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_2.fsh; sourceTree = "<group>"; };
+		88DD2C2322C4A0F500A54AB8 /* SplitScreen_3.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_3.vsh; sourceTree = "<group>"; };
+		88DD2C2522C4A10800A54AB8 /* SplitScreen_3.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_3.fsh; sourceTree = "<group>"; };
+		88DD2C2822C4A61300A54AB8 /* SplitScreen_4.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_4.vsh; sourceTree = "<group>"; };
+		88DD2C2A22C4A62000A54AB8 /* SplitScreen_4.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_4.fsh; sourceTree = "<group>"; };
+		88DD2C2D22C4A76600A54AB8 /* SplitScreen_5.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_5.vsh; sourceTree = "<group>"; };
+		88DD2C2F22C4A77600A54AB8 /* SplitScreen_5.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_5.fsh; sourceTree = "<group>"; };
+		88DD2C3222C4A93D00A54AB8 /* SplitScreen_6.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_6.vsh; sourceTree = "<group>"; };
+		88DD2C3422C4A94A00A54AB8 /* SplitScreen_6.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SplitScreen_6.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +100,11 @@
 				4C23515422C2635C009211C0 /* SplitView.h */,
 				4C23515522C2635C009211C0 /* SplitView.m */,
 				8831F60522C3669C0072D8DE /* kunkun.jpg */,
+				88DD2C3122C4A92300A54AB8 /* SplitScreen_6 */,
+				88DD2C2C22C4A73800A54AB8 /* SplitScreen_5 */,
+				88DD2C2722C4A5FD00A54AB8 /* SplitScreen_4 */,
+				88DD2C2222C49F4200A54AB8 /* SplitScreen_3 */,
+				88DD2C1D22C49C7400A54AB8 /* SplitScreen_2 */,
 				4C23515722C26890009211C0 /* SplitScreen_1 */,
 				4C23514D22C262FC009211C0 /* Tool */,
 				4C23513D22C26255009211C0 /* Main.storyboard */,
@@ -94,10 +119,10 @@
 		4C23514D22C262FC009211C0 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				4C23514E22C262FC009211C0 /* FilterBarCell.m */,
-				4C23514F22C262FC009211C0 /* FilterBar.m */,
 				4C23515022C262FC009211C0 /* FilterBarCell.h */,
+				4C23514E22C262FC009211C0 /* FilterBarCell.m */,
 				4C23515122C262FC009211C0 /* FilterBar.h */,
+				4C23514F22C262FC009211C0 /* FilterBar.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -109,6 +134,51 @@
 				4C23515A22C26B68009211C0 /* SplitScreen_1.fsh */,
 			);
 			path = SplitScreen_1;
+			sourceTree = "<group>";
+		};
+		88DD2C1D22C49C7400A54AB8 /* SplitScreen_2 */ = {
+			isa = PBXGroup;
+			children = (
+				88DD2C1E22C49C9800A54AB8 /* SplitScreen_2.vsh */,
+				88DD2C2022C49CAA00A54AB8 /* SplitScreen_2.fsh */,
+			);
+			path = SplitScreen_2;
+			sourceTree = "<group>";
+		};
+		88DD2C2222C49F4200A54AB8 /* SplitScreen_3 */ = {
+			isa = PBXGroup;
+			children = (
+				88DD2C2322C4A0F500A54AB8 /* SplitScreen_3.vsh */,
+				88DD2C2522C4A10800A54AB8 /* SplitScreen_3.fsh */,
+			);
+			path = SplitScreen_3;
+			sourceTree = "<group>";
+		};
+		88DD2C2722C4A5FD00A54AB8 /* SplitScreen_4 */ = {
+			isa = PBXGroup;
+			children = (
+				88DD2C2822C4A61300A54AB8 /* SplitScreen_4.vsh */,
+				88DD2C2A22C4A62000A54AB8 /* SplitScreen_4.fsh */,
+			);
+			path = SplitScreen_4;
+			sourceTree = "<group>";
+		};
+		88DD2C2C22C4A73800A54AB8 /* SplitScreen_5 */ = {
+			isa = PBXGroup;
+			children = (
+				88DD2C2D22C4A76600A54AB8 /* SplitScreen_5.vsh */,
+				88DD2C2F22C4A77600A54AB8 /* SplitScreen_5.fsh */,
+			);
+			path = SplitScreen_5;
+			sourceTree = "<group>";
+		};
+		88DD2C3122C4A92300A54AB8 /* SplitScreen_6 */ = {
+			isa = PBXGroup;
+			children = (
+				88DD2C3222C4A93D00A54AB8 /* SplitScreen_6.vsh */,
+				88DD2C3422C4A94A00A54AB8 /* SplitScreen_6.fsh */,
+			);
+			path = SplitScreen_6;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,11 +239,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C23515922C268D4009211C0 /* SplitScreen_1.vsh in Resources */,
+				88DD2C3522C4A94A00A54AB8 /* SplitScreen_6.fsh in Resources */,
 				8831F60622C3669C0072D8DE /* kunkun.jpg in Resources */,
+				88DD2C3022C4A77600A54AB8 /* SplitScreen_5.fsh in Resources */,
 				4C23514422C2627B009211C0 /* LaunchScreen.storyboard in Resources */,
 				4C23514122C2627A009211C0 /* Assets.xcassets in Resources */,
+				88DD2C2622C4A10800A54AB8 /* SplitScreen_3.fsh in Resources */,
+				88DD2C2922C4A61300A54AB8 /* SplitScreen_4.vsh in Resources */,
 				4C23515B22C26B68009211C0 /* SplitScreen_1.fsh in Resources */,
+				88DD2C2B22C4A62000A54AB8 /* SplitScreen_4.fsh in Resources */,
+				88DD2C2122C49CAA00A54AB8 /* SplitScreen_2.fsh in Resources */,
+				88DD2C3322C4A93D00A54AB8 /* SplitScreen_6.vsh in Resources */,
+				88DD2C1F22C49C9800A54AB8 /* SplitScreen_2.vsh in Resources */,
+				88DD2C2422C4A0F500A54AB8 /* SplitScreen_3.vsh in Resources */,
 				4C23513F22C26255009211C0 /* Main.storyboard in Resources */,
+				88DD2C2E22C4A76600A54AB8 /* SplitScreen_5.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
