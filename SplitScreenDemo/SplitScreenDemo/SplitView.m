@@ -31,6 +31,10 @@ typedef struct {
 
 @property (nonatomic, strong) EAGLContext *myContext;
 
+@property (nonatomic, strong) CADisplayLink *displayLink;
+
+@property (nonatomic, assign) NSTimeInterval startTimeInterval;
+
 @end
 
 @implementation SplitView
@@ -57,18 +61,31 @@ typedef struct {
     
     [self setupProgramWithName:@"SplitScreen_1"];
     [self loadTexture:@"kunkun.jpg"];
+    
+    [self useProgram];
+    
+    [self render];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
-    [self render];
 }
 
-- (void)renderWithName:(NSString *)name {
+- (void)renderWithName:(NSString *)name animation:(BOOL)animation {
     
     [self setupProgramWithName:name];
-    [self render];
+    
+    if (animation) {
+        [self setupDisplayLink];
+    }
+    else {
+        if (self.displayLink) {
+            [self.displayLink invalidate];
+            self.displayLink = nil;
+        }
+        [self render];
+    }
+    
 }
 
 
@@ -96,7 +113,11 @@ typedef struct {
     glViewport(0, 0, [self drawableWidth], [self drawableHeight]);
     
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
-    [self useProgram];
+    glUseProgram(program);
+    
+    int timeLocation = glGetUniformLocation(program, "time");
+    CGFloat currentTime = self.displayLink.timestamp - self.startTimeInterval;
+    glUniform1f(timeLocation, currentTime);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
@@ -292,5 +313,25 @@ typedef struct {
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &height);
     return height;
 }
+
+
+#pragma mark - displayLink
+- (void)setupDisplayLink {
+    
+    if (self.displayLink) {
+        [self.displayLink invalidate];
+        self.displayLink = nil;
+    }
+    
+    self.startTimeInterval = 0;
+    self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startMyAnimation)];
+    [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+}
+
+- (void)startMyAnimation {
+    
+    [self render];
+}
+
 
 @end

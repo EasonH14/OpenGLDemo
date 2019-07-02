@@ -18,12 +18,11 @@ void main() {
     
     int column = int(x / (len * TC));
     int row = int(y / (len * TR));
-    int two = 2;
     
     vec2 v1, v2, vn;
     
-    bool r = row/2 * 2 == row;
-    bool c = column/2 * 2 == column;
+    bool r = mod(float(row), 2.0) == 0.0;
+    bool c = mod(float(column), 2.0) == 0.0;
     
     if (r == c) {
         v1 = vec2(len * TC * float(column), len * TR * float(row));

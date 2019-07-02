@@ -16,8 +16,8 @@ void main() {
     
     vec2 v1, v2, vn;
     
-    bool evenR = row/2 * 2 == row;
-    bool evenC = column/2 * 2 == column;
+    bool evenR = mod(float(row), 2.0) == 0.0;
+    bool evenC = mod(float(column), 2.0) == 0.0;
     
     if (evenR == evenC) {
         v1 = vec2(r * float(column), r * float(row));

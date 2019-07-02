@@ -83,7 +83,8 @@ static NSString * const kFilterBarCellIdentifier = @"FilterBarCell";
 - (void)setItemList:(NSArray<NSString *> *)itemList {
     
     _itemList = itemList;
-    [_collectionView reloadData];
+    [self selectIndex:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    [_collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDelegate & UICollectionViewDataSource

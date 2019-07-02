@@ -37,7 +37,7 @@
     filterBar.delegate = self;
     [self.view addSubview:filterBar];
     
-    filterBar.itemList = @[@"无", @"分屏_2", @"分屏_3", @"分屏_4", @"分屏_6", @"分屏_9", @"灰度", @"翻转", @"漩涡", @"马赛克", @"马赛克2", @"马赛克3"];
+    filterBar.itemList = @[@"无", @"分屏_2", @"分屏_3", @"分屏_4", @"分屏_6", @"分屏_9", @"灰度", @"翻转", @"漩涡", @"马赛克", @"马赛克2", @"马赛克3", @"马赛克4", @"缩放", @"缩放2", @"灵魂出窍", @"抖动", @"闪白", @"撕裂"];
     
 }
 
@@ -59,7 +59,7 @@
     
     NSString *name = [NSString stringWithFormat:@"SplitScreen_%lu", index+1];
     
-    [self.splitView renderWithName:name];
+    [self.splitView renderWithName:name animation:(index >= 13)];
     
 }
 

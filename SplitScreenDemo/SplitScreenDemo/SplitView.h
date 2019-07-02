@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SplitView : UIView
 
-- (void)renderWithName:(NSString *)name;
+- (void)renderWithName:(NSString *)name animation:(BOOL)animation;
 
 @end
 
