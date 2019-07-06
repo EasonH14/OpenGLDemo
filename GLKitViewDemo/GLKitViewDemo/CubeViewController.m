@@ -15,7 +15,7 @@ typedef struct {
     GLKVector3 positionCoord;
     GLKVector3 textureCoord;
     GLKVector3 normal;
-} CCVertex;
+} HYVertex;
 
 static GLint const kCoordCount = 24;
 static GLint const kFaceCount = 6;
@@ -23,7 +23,7 @@ static GLint const kFaceVertexCount = 4;
 
 @interface CubeViewController ()<GLKViewDelegate>
 {
-    CCVertex *vertices;
+    HYVertex *vertices;
     GLuint vertexBuffer;
     GLint angle;
 }
@@ -91,7 +91,7 @@ static GLint const kFaceVertexCount = 4;
     self.glkView.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     [self loadTexture];
-    
+  
     // 设置顶点数据
     [self vertexDataSetup];
 }
@@ -110,58 +110,58 @@ static GLint const kFaceVertexCount = 4;
 - (void)vertexDataSetup {
     
     // 开辟顶点数据空间
-    vertices = malloc(sizeof(CCVertex) * kCoordCount);
+    vertices = malloc(sizeof(HYVertex) * kCoordCount);
     
     // 前面
-    vertices[0] = (CCVertex){{0.5, -0.5, 0.5}, {1, 0}, {0, 0, 1}};
-    vertices[1] = (CCVertex){{-0.5, -0.5, 0.5}, {0, 0}, {0, 0, 1}};
-    vertices[2] = (CCVertex){{0.5, 0.5, 0.5}, {1, 1}, {0, 0, 1}};
-    vertices[3] = (CCVertex){{-0.5, 0.5, 0.5}, {0, 1}, {0, 0, 1}};
+    vertices[0] = (HYVertex){{0.5, -0.5, 0.5}, {1, 0}, {0, 0, 1}};
+    vertices[1] = (HYVertex){{-0.5, -0.5, 0.5}, {0, 0}, {0, 0, 1}};
+    vertices[2] = (HYVertex){{0.5, 0.5, 0.5}, {1, 1}, {0, 0, 1}};
+    vertices[3] = (HYVertex){{-0.5, 0.5, 0.5}, {0, 1}, {0, 0, 1}};
     
     // 后面
-    vertices[4] = (CCVertex){{-0.5, 0.5, -0.5}, {0, 1}, {0, 0, -1}};
-    vertices[5] = (CCVertex){{0.5, 0.5, -0.5}, {1, 1}, {0, 0, -1}};
-    vertices[6] = (CCVertex){{-0.5, -0.5, -0.5}, {0, 0}, {0, 0, -1}};
-    vertices[7] = (CCVertex){{0.5, -0.5, -0.5}, {1, 0}, {0, 0, -1}};
+    vertices[4] = (HYVertex){{-0.5, 0.5, -0.5}, {0, 1}, {0, 0, -1}};
+    vertices[5] = (HYVertex){{0.5, 0.5, -0.5}, {1, 1}, {0, 0, -1}};
+    vertices[6] = (HYVertex){{-0.5, -0.5, -0.5}, {0, 0}, {0, 0, -1}};
+    vertices[7] = (HYVertex){{0.5, -0.5, -0.5}, {1, 0}, {0, 0, -1}};
     
     // 上面
-    vertices[8] = (CCVertex){{0.5, 0.5, 0.5}, {1, 0}, {0, 1, 0}};
-    vertices[9] = (CCVertex){{-0.5, 0.5, 0.5}, {0, 0}, {0, 1, 0}};
-    vertices[10] = (CCVertex){{0.5, 0.5, -0.5}, {1, 1}, {0, 1, 0}};
-    vertices[11] = (CCVertex){{-0.5, 0.5, -0.5}, {0, 1}, {0, 1, 0}};
+    vertices[8] = (HYVertex){{0.5, 0.5, 0.5}, {1, 0}, {0, 1, 0}};
+    vertices[9] = (HYVertex){{-0.5, 0.5, 0.5}, {0, 0}, {0, 1, 0}};
+    vertices[10] = (HYVertex){{0.5, 0.5, -0.5}, {1, 1}, {0, 1, 0}};
+    vertices[11] = (HYVertex){{-0.5, 0.5, -0.5}, {0, 1}, {0, 1, 0}};
     
     // 下面
-    vertices[12] = (CCVertex){{-0.5, -0.5, -0.5}, {0, 0}, {0, -1, 0}};
-    vertices[13] = (CCVertex){{0.5, -0.5, -0.5}, {1, 0}, {0, -1, 0}};
-    vertices[14] = (CCVertex){{-0.5, -0.5, 0.5}, {0, 1}, {0, -1, 0}};
-    vertices[15] = (CCVertex){{0.5, -0.5, 0.5}, {1, 1}, {0, -1, 0}};
+    vertices[12] = (HYVertex){{-0.5, -0.5, -0.5}, {0, 0}, {0, -1, 0}};
+    vertices[13] = (HYVertex){{0.5, -0.5, -0.5}, {1, 0}, {0, -1, 0}};
+    vertices[14] = (HYVertex){{-0.5, -0.5, 0.5}, {0, 1}, {0, -1, 0}};
+    vertices[15] = (HYVertex){{0.5, -0.5, 0.5}, {1, 1}, {0, -1, 0}};
     
     // 左面
-    vertices[16] = (CCVertex){{-0.5, -0.5, -0.5}, {0, 0}, {-1, 0, 0}};
-    vertices[17] = (CCVertex){{-0.5, -0.5, 0.5}, {1, 0}, {-1, 0, 0}};
-    vertices[18] = (CCVertex){{-0.5, 0.5, -0.5}, {0, 1}, {-1, 0, 0}};
-    vertices[19] = (CCVertex){{-0.5, 0.5, 0.5}, {1, 1}, {-1, 0, 0}};
+    vertices[16] = (HYVertex){{-0.5, -0.5, -0.5}, {0, 0}, {-1, 0, 0}};
+    vertices[17] = (HYVertex){{-0.5, -0.5, 0.5}, {1, 0}, {-1, 0, 0}};
+    vertices[18] = (HYVertex){{-0.5, 0.5, -0.5}, {0, 1}, {-1, 0, 0}};
+    vertices[19] = (HYVertex){{-0.5, 0.5, 0.5}, {1, 1}, {-1, 0, 0}};
     
     // 右面
-    vertices[20] = (CCVertex){{0.5, 0.5, -0.5}, {1, 1}, {1, 0, 0}};
-    vertices[21] = (CCVertex){{0.5, 0.5, 0.5}, {0, 1}, {1, 0, 0}};
-    vertices[22] = (CCVertex){{0.5, -0.5, -0.5}, {1, 0}, {1, 0, 0}};
-    vertices[23] = (CCVertex){{0.5, -0.5, 0.5}, {0, 0}, {1, 0, 0}};
+    vertices[20] = (HYVertex){{0.5, 0.5, -0.5}, {1, 1}, {1, 0, 0}};
+    vertices[21] = (HYVertex){{0.5, 0.5, 0.5}, {0, 1}, {1, 0, 0}};
+    vertices[22] = (HYVertex){{0.5, -0.5, -0.5}, {1, 0}, {1, 0, 0}};
+    vertices[23] = (HYVertex){{0.5, -0.5, 0.5}, {0, 0}, {1, 0, 0}};
     
     // 开辟顶点缓存区 VBO
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(CCVertex) * kCoordCount, vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(HYVertex) * kCoordCount, vertices, GL_STATIC_DRAW);
     
     // 开启通道
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(CCVertex), NULL + offsetof(CCVertex, positionCoord));
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(HYVertex), NULL + offsetof(HYVertex, positionCoord));
     
     glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(CCVertex), NULL + offsetof(CCVertex, textureCoord));
+    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(HYVertex), NULL + offsetof(HYVertex, textureCoord));
     
     glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, sizeof(CCVertex), NULL + offsetof(CCVertex, normal));
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, sizeof(HYVertex), NULL + offsetof(HYVertex, normal));
 }
 
 #pragma mark - GLKViewDelegate
